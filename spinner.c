@@ -29,10 +29,8 @@ int main() {
   char graphicbuf[bufsize];
 
   // Register signal handlers
-  int signals[] = {SIGALRM, SIGUSR1, SIGUSR2, SIGINT};
-  size_t numsignals = sizeof(signals)/sizeof(int);
-  for(i = 0; i < numsignals; i++)
-    (void)signal(signals[i], handle_signals);
+  (void)signal(SIGALRM, handle_signals);
+  (void)signal(SIGINT, handle_signals);
 
   // Set up a timer to interrupt the program every 5ms
   struct timeval tt = {0, 5000};
